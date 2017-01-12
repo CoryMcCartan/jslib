@@ -47,6 +47,18 @@
         iterate();
     };
 
+    // Promise wrapper
+    window.Pr = function(func) {
+        // return a function that wraps a promise
+        return function(...args) {
+            // create the promise
+            return new Promise(function(resolve, reject) {
+                // pass through resolve/reject, plus additional args
+                func(resolve, reject, ...args);
+            }); 
+        };
+    };
+
     window.Mediator = function(glue) {
         var self = {};
 
